@@ -785,6 +785,118 @@ a:focus-visible, button:focus-visible {
   border-radius: 4px;
 }
 
+/* === Animations === */
+
+/* Scroll Reveal (triggered by IntersectionObserver in Reveal.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero text entrance — typewriter effect handled by TypewriterText.tsx */
+
+/* Blinking cursor during typing */
+.type-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background: var(--mint);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: cursorBlink 0.85s steps(2, start) infinite;
+  border-radius: 1px;
+}
+@keyframes cursorBlink {
+  to { visibility: hidden; }
+}
+
+.type-line {
+  display: inline;
+}
+
+/* Sub-paragraph & CTA appear after full typewriter is done (~2.8s) */
+.hero-sub,
+.hero-cta-row {
+  opacity: 0;
+  animation: heroFadeUp 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-sub { animation-delay: 2900ms; }
+.hero-cta-row { animation-delay: 3100ms; }
+
+.hero-photo-zone {
+  opacity: 0;
+  animation: heroFadeIn 1000ms cubic-bezier(0.22, 1, 0.36, 1) 300ms forwards;
+}
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Role pills: entrance + continuous float loop */
+.role-pill {
+  opacity: 0;
+  animation:
+    rolePillIn 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    rolePillFloat 4.5s ease-in-out infinite;
+}
+.role-pill.r1 { animation-delay: 3300ms, 4000ms; }
+.role-pill.r2 { animation-delay: 3450ms, 4100ms; animation-duration: 600ms, 4s; }
+.role-pill.r3 { animation-delay: 3600ms, 4250ms; animation-duration: 600ms, 5s; }
+.role-pill.r4 { animation-delay: 3750ms, 4350ms; animation-duration: 600ms, 4.2s; }
+
+@keyframes rolePillIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes rolePillFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* Logo dot pulse (continuous, subtle) */
+.logo-dot {
+  animation: logoDotPulse 2.4s ease-in-out infinite;
+}
+@keyframes logoDotPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}
+
+/* Respect reduced motion for all above */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-sub,
+  .hero-cta-row,
+  .hero-photo-zone,
+  .role-pill {
+    opacity: 1;
+    animation: none;
+  }
+  .type-cursor {
+    display: none;
+  }
+  .logo-dot {
+    animation: none;
+  }
+}
+
 /* === Modal === */
 .modal-backdrop {
   position: fixed;
@@ -963,3 +1075,4 @@ a:focus-visible, button:focus-visible {
   background: var(--mint);
   border-radius: 50%;
 }
+

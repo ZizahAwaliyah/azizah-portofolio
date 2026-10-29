@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Projects from "./components/Projects";
+import Reveal from "./components/Reveal";
+import TypewriterText from "./components/TypewriterText";
 
 export default function Home() {
   return (
@@ -31,13 +33,24 @@ export default function Home() {
         <section className="hero">
           <div>
             <h1>
-              Turning <span className="serif-italic">Data</span>
-              <br />
-              Into Insight.
-              <br />
-              Ideas Into
-              <br />
-              <span className="accent-word">Impact</span>.
+              <TypewriterText
+                startDelay={300}
+                charDelay={55}
+                lineBreakDelay={200}
+                lines={[
+                  [
+                    { text: "Turning" },
+                    { text: " " },
+                    { text: "Data", className: "serif-italic" },
+                  ],
+                  [{ text: "Into Insight." }],
+                  [
+                    { text: "Ideas Into " },
+                    { text: "Impact", className: "accent-word" },
+                    { text: "." },
+                  ],
+                ]}
+              />
             </h1>
             <p className="hero-sub">
               Informatics Engineering student at Universitas Hasanuddin with a
@@ -95,6 +108,7 @@ export default function Home() {
         </div>
 
         {/* ABOUT */}
+        <Reveal>
         <section className="about" id="about">
           <div className="about-shape-left"></div>
           <div className="about-shape-right"></div>
@@ -186,11 +200,15 @@ export default function Home() {
             </a>
           </div>
         </section>
+        </Reveal>
 
         {/* PROJECTS */}
+        <Reveal>
         <Projects />
+        </Reveal>
 
         {/* SKILLS */}
+        <Reveal>
         <section className="skills-section" id="skills">
           <h2>
             Skills that <span className="serif-italic">fuel</span>
@@ -336,8 +354,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+        </Reveal>
 
         {/* CERTIFICATIONS */}
+        <Reveal>
         <section className="certifications-section" id="certifications">
           <div className="section-head">
             <h2>Certifications</h2>
@@ -419,8 +439,10 @@ export default function Home() {
             </a>
           </div>
         </section>
+        </Reveal>
 
         {/* EXPERIENCE */}
+        <Reveal>
         <section className="experience" id="experience">
           <div className="section-head">
             <h2>Experience</h2>
@@ -490,8 +512,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+        </Reveal>
 
         {/* CTA */}
+        <Reveal>
         <section className="cta-band" id="contact">
           <h2>
             Let&apos;s collaborate. <br />
@@ -505,6 +529,7 @@ export default function Home() {
             Email Me <span className="arrow-circle">→</span>
           </a>
         </section>
+        </Reveal>
       </main>
 
       {/* FOOTER */}
@@ -601,3 +626,4 @@ export default function Home() {
     </>
   );
 }
+
