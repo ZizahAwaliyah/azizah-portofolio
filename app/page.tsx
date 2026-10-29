@@ -415,7 +415,7 @@ export default function Home() {
             </a>
 
             <a
-              href="https://www.dicoding.com/certificates/1RXYW5103ZVM"
+              href="https://www.dicoding.com/certificates/1RXYW51O3ZVM"
               target="_blank"
               rel="noopener noreferrer"
               className="cert-card ct3"
